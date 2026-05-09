@@ -1,0 +1,3394 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, shrink-to-fit=no, viewport-fit=cover" />
+  <title>Lớp 10A8 | The Official Website</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
+
+  <style>
+    /* ============================================
+       1. SETUP & VARIABLES & GLOBAL STYLES
+       ============================================ */
+    :root {
+      --primary: #6366f1;
+      --primary-glow: rgba(99, 102, 241, 0.4);
+      --accent: #f43f5e;
+      --accent-glow: rgba(244, 63, 94, 0.4);
+      --bg-color: #f8fafc;
+      --text-main: #0f172a;
+      --text-light: #64748b;
+      --card-bg: rgba(255, 255, 255, 0.8);
+      --glass-border: 1px solid rgba(255, 255, 255, 0.6);
+      --radius: 24px;
+      --shadow: 0 20px 60px -20px rgba(0,0,0,0.15);
+      --shadow-hover: 0 30px 90px -30px rgba(99, 102, 241, 0.4);
+    }
+
+    body.dark {
+      --bg-color: #0a0e17;
+      --text-main: #f1f5f9;
+      --text-light: #94a3b8;
+      --card-bg: rgba(30, 41, 59, 0.8);
+      --glass-border: 1px solid rgba(255, 255, 255, 0.12);
+      --primary-glow: rgba(99, 102, 241, 0.2);
+      --accent-glow: rgba(244, 63, 94, 0.2);
+      --shadow: 0 20px 60px -20px rgba(0,0,0,0.3);
+      --shadow-hover: 0 30px 90px -30px rgba(99, 102, 241, 0.2);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: var(--bg-color);
+      color: var(--text-main);
+      transition: 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      overflow-x: hidden;
+      cursor: none;
+      position: relative;
+      min-height: 100vh;
+    }
+
+    /* Gradient Mesh Background */
+    .gradient-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        radial-gradient(circle at 20% 80%, rgba(99, 102, 241, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 80% 20%, rgba(244, 63, 94, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 40% 40%, rgba(139, 92, 246, 0.1) 0%, transparent 40%),
+        var(--bg-color);
+      z-index: -2;
+      opacity: 0.8;
+      transition: opacity 0.6s;
+    }
+
+    body.dark .gradient-bg {
+      background: 
+        radial-gradient(circle at 20% 80%, rgba(99, 102, 241, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 80% 20%, rgba(244, 63, 94, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 40% 40%, rgba(139, 92, 246, 0.05) 0%, transparent 40%),
+        var(--bg-color);
+    }
+
+    /* Noise Texture Overlay */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    /* Floating Elements Animation */
+    .floating-element {
+      position: fixed;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary-glow), var(--accent-glow));
+      filter: blur(40px);
+      z-index: -1;
+      animation: float 20s infinite ease-in-out;
+    }
+
+    .floating-1 {
+      width: 400px;
+      height: 400px;
+      top: 10%;
+      left: 5%;
+      animation-delay: 0s;
+    }
+
+    .floating-2 {
+      width: 300px;
+      height: 300px;
+      bottom: 15%;
+      right: 10%;
+      animation-delay: -5s;
+    }
+
+    .floating-3 {
+      width: 250px;
+      height: 250px;
+      top: 50%;
+      left: 80%;
+      animation-delay: -10s;
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translate(0, 0) rotate(0deg);
+      }
+      25% {
+        transform: translate(50px, 50px) rotate(90deg);
+      }
+      50% {
+        transform: translate(0, 100px) rotate(180deg);
+      }
+      75% {
+        transform: translate(-50px, 50px) rotate(270deg);
+      }
+    }
+
+    /* ============================================
+       2. CUSTOM CURSOR
+       ============================================ */
+    .cursor-dot, .cursor-outline {
+      position: fixed;
+      top: 0; left: 0;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      z-index: 9999;
+      pointer-events: none;
+      transition: transform 0.1s, width 0.3s, height 0.3s, background-color 0.3s;
+    }
+    .cursor-dot { 
+      width: 8px; 
+      height: 8px; 
+      background: var(--primary);
+      mix-blend-mode: difference;
+    }
+    .cursor-outline {
+      width: 40px; 
+      height: 40px;
+      border: 2px solid var(--primary);
+      background: transparent;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    body:has(a:hover, button:hover, .tilt-card:hover, .students li:hover, .add-note-pad-wrapper:hover) .cursor-outline {
+      width: 70px; 
+      height: 70px;
+      background: var(--primary-glow);
+      border-color: transparent;
+      backdrop-filter: blur(4px);
+    }
+    
+    body:has(.sticky-note:hover) .cursor-outline {
+      background: rgba(255, 255, 0, 0.1);
+      border-color: #ffd700;
+    }
+    
+    body:has(.birthday-card.today:hover) .cursor-outline {
+      background: rgba(255, 215, 0, 0.2);
+      border-color: #ffd700;
+      animation: cursorPulse 1s infinite;
+    }
+
+    @keyframes cursorPulse {
+      0%, 100% { transform: translate(-50%, -50%) scale(1); }
+      50% { transform: translate(-50%, -50%) scale(1.2); }
+    }
+
+    @media (max-width: 768px) {
+        .cursor-dot, .cursor-outline { display: none; }
+        body { cursor: auto; }
+    }
+
+    /* ============================================
+       3. HEADER HERO với animation
+       ============================================ */
+    header {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      padding: 20px;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        radial-gradient(circle at 20% 50%, rgba(99, 102, 241, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(244, 63, 94, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 40% 80%, rgba(139, 92, 246, 0.2) 0%, transparent 50%);
+      z-index: -1;
+      animation: gradientShift 15s ease infinite;
+    }
+
+    @keyframes gradientShift {
+      0%, 100% {
+        transform: scale(1) rotate(0deg);
+        opacity: 0.8;
+      }
+      33% {
+        transform: scale(1.1) rotate(120deg);
+        opacity: 0.6;
+      }
+      66% {
+        transform: scale(0.9) rotate(240deg);
+        opacity: 1;
+      }
+    }
+
+    header h1 {
+      font-size: clamp(4rem, 10vw, 8rem);
+      font-weight: 800;
+      background: linear-gradient(135deg, #4f46e5, #ec4899, #f59e0b, #10b981);
+      background-size: 300% 300%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 10px;
+      line-height: 1.1;
+      filter: drop-shadow(0 10px 20px rgba(99, 102, 241, 0.3));
+      animation: gradientFlow 8s ease infinite, textGlow 4s ease-in-out infinite alternate;
+    }
+
+    @keyframes gradientFlow {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    @keyframes textGlow {
+      0% { filter: drop-shadow(0 5px 15px rgba(99, 102, 241, 0.3)); }
+      100% { filter: drop-shadow(0 15px 30px rgba(244, 63, 94, 0.4)); }
+    }
+
+    header p {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--text-light);
+      margin-bottom: 30px;
+      animation: fadeInUp 1s 0.3s both;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    #countdown {
+      margin-top: 20px; 
+      font-weight: 700; 
+      font-size: 1.2rem; 
+      background: rgba(255,255,255,0.2); 
+      padding: 12px 25px; 
+      border-radius: 30px; 
+      backdrop-filter: blur(10px); 
+      border: 1px solid rgba(255,255,255,0.3);
+      animation: fadeInUp 1s 0.6s both;
+    }
+
+    .scroll-down {
+      position: absolute;
+      bottom: 40px;
+      font-size: 1.5rem;
+      color: var(--primary);
+      animation: bounce 2s infinite, fadeIn 1s 1s both;
+      cursor: pointer;
+      padding: 10px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      transition: all 0.3s;
+    }
+
+    .scroll-down:hover {
+      background: rgba(99, 102, 241, 0.2);
+      transform: scale(1.2);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(10px); }
+    }
+
+    /* ============================================
+       4. NAVIGATION với animation
+       ============================================ */
+    nav {
+      position: sticky;
+      top: 20px;
+      margin: 0 auto 40px;
+      width: 90%;
+      max-width: 900px;
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.25);
+      border-radius: 50px;
+      padding: 10px 25px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 100;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+      animation: slideDown 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: all 0.4s;
+    }
+
+    @keyframes slideDown {
+      from {
+        transform: translateY(-100px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    nav:hover {
+      box-shadow: 0 15px 50px rgba(99, 102, 241, 0.2);
+      transform: translateY(-2px);
+      border-color: rgba(99, 102, 241, 0.3);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 5px;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-main);
+      font-weight: 700;
+      padding: 10px 20px;
+      border-radius: 25px;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .nav-links a::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.1), transparent);
+      transition: left 0.6s;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+      background: rgba(99, 102, 241, 0.1);
+      transform: translateY(-2px);
+    }
+
+    .nav-links a:hover::before {
+      left: 100%;
+    }
+
+    .nav-links a.active {
+      color: white;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      box-shadow: 0 5px 20px rgba(99, 102, 241, 0.4);
+    }
+
+    .theme-btn {
+      background: var(--card-bg);
+      color: var(--text-main);
+      border: var(--glass-border);
+      width: 45px; 
+      height: 45px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      backdrop-filter: blur(10px);
+    }
+
+    .theme-btn:hover {
+      transform: rotate(180deg) scale(1.1);
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: white;
+      box-shadow: 0 10px 25px rgba(99, 102, 241, 0.3);
+    }
+
+    /* ============================================
+       5. LAYOUT & SECTIONS với animation
+       ============================================ */
+    main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px 100px;
+      display: grid;
+      gap: 80px;
+    }
+
+    section {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    section h2 {
+      font-size: 2.5rem;
+      margin-bottom: 40px;
+      text-align: center;
+      position: relative;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    section h2::after {
+      content: ''; 
+      display: block; 
+      width: 80px; 
+      height: 5px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      margin: 15px auto 0; 
+      border-radius: 10px;
+      animation: lineWidth 3s ease infinite alternate;
+    }
+
+    @keyframes lineWidth {
+      0% { width: 80px; }
+      100% { width: 120px; }
+    }
+
+    /* ============================================
+       6. BENTO GRID STATS với animation
+       ============================================ */
+    .bento-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: repeat(2, 160px);
+      gap: 25px;
+      perspective: 1000px;
+    }
+
+    .bento-card {
+      background: var(--card-bg);
+      border: var(--glass-border);
+      border-radius: var(--radius);
+      padding: 25px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      transform-style: preserve-3d;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .bento-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.6s;
+    }
+
+    .bento-card:hover::before {
+      left: 100%;
+    }
+
+    .bento-card:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: var(--shadow-hover);
+      border-color: rgba(99, 102, 241, 0.3);
+    }
+
+    .bento-card.large {
+      grid-column: span 2;
+      grid-row: span 2;
+      background: linear-gradient(135deg, var(--primary), #8b5cf6);
+      color: white;
+      animation: cardPulse 4s ease infinite;
+    }
+
+    @keyframes cardPulse {
+      0%, 100% { box-shadow: 0 20px 60px -20px rgba(99, 102, 241, 0.4); }
+      50% { box-shadow: 0 30px 80px -30px rgba(139, 92, 246, 0.6); }
+    }
+
+    .bento-card.large h3 { 
+      font-size: 5rem; 
+      line-height: 1; 
+      margin: 0; 
+      text-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+    
+    .bento-card.large p { 
+      font-size: 1.2rem; 
+      opacity: 0.9; 
+    }
+    
+    .bento-card.medium { 
+      grid-column: span 2; 
+    }
+    
+    .bento-card strong { 
+      font-size: 2.5rem; 
+      color: var(--accent); 
+      display: block; 
+      text-shadow: 0 2px 10px rgba(244, 63, 94, 0.2);
+    }
+    
+    .bento-card span { 
+      font-size: 0.9rem; 
+      font-weight: 700; 
+      color: var(--text-light); 
+      text-transform: uppercase; 
+      letter-spacing: 1px;
+    }
+
+    /* ============================================
+       7. STUDENT LIST
+       ============================================ */
+    .student-list-container {
+        background: var(--card-bg);
+        padding: 30px;
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        border: var(--glass-border);
+        backdrop-filter: blur(10px);
+        transition: all 0.4s;
+    }
+
+    .student-list-container:hover {
+      box-shadow: var(--shadow-hover);
+      transform: translateY(-5px);
+    }
+
+    .students {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 15px;
+      list-style: none;
+    }
+
+    .students li {
+      background: rgba(99, 102, 241, 0.1);
+      color: var(--primary);
+      padding: 15px 20px;
+      border-radius: 16px;
+      font-weight: 600;
+      text-align: center;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid transparent;
+    }
+
+    .students li::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: rgba(99, 102, 241, 0.2);
+      transform: translate(-50%, -50%);
+      transition: width 0.6s, height 0.6s;
+    }
+
+    .students li:hover::before {
+      width: 300px;
+      height: 300px;
+    }
+
+    .students li:hover {
+      background: var(--primary);
+      color: white;
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 10px 25px rgba(99, 102, 241, 0.3);
+      border-color: rgba(99, 102, 241, 0.3);
+    }
+
+    /* ============================================
+       8. BIRTHDAY SECTION (TÍNH NĂNG MỚI)
+       ============================================ */
+    .birthday-section {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(244, 63, 94, 0.1));
+      border-radius: var(--radius);
+      padding: 40px;
+      position: relative;
+      overflow: hidden;
+      border: var(--glass-border);
+      backdrop-filter: blur(10px);
+    }
+
+    .birthday-section::before {
+      content: '🎉';
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      font-size: 4rem;
+      opacity: 0.1;
+      animation: floatUpDown 3s ease-in-out infinite;
+    }
+
+    .birthday-section::after {
+      content: '🎂';
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      font-size: 3rem;
+      opacity: 0.1;
+      animation: floatUpDown 3s ease-in-out infinite reverse;
+    }
+
+    @keyframes floatUpDown {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+
+    .birthday-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .birthday-card {
+      background: var(--card-bg);
+      border-radius: 20px;
+      padding: 25px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      border: var(--glass-border);
+      position: relative;
+      overflow: hidden;
+      backdrop-filter: blur(10px);
+    }
+
+    .birthday-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.6s;
+    }
+
+    .birthday-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .birthday-card:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .birthday-card.today {
+      background: linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(255, 140, 0, 0.15));
+      animation: birthdayGlow 2s ease-in-out infinite alternate;
+      border-color: rgba(255, 215, 0, 0.3);
+    }
+
+    @keyframes birthdayGlow {
+      0% { box-shadow: 0 10px 30px rgba(255, 215, 0, 0.2); }
+      100% { box-shadow: 0 20px 50px rgba(255, 140, 0, 0.4); }
+    }
+
+    .birthday-avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--primary);
+      padding: 3px;
+      background: white;
+      flex-shrink: 0;
+    }
+
+    .birthday-card.today .birthday-avatar {
+      border-color: gold;
+      animation: avatarSpin 20s linear infinite;
+    }
+
+    @keyframes avatarSpin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .birthday-info {
+      flex-grow: 1;
+    }
+
+    .birthday-name {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 5px;
+    }
+
+    .birthday-date {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text-light);
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .birthday-date i {
+      color: var(--accent);
+    }
+
+    .birthday-countdown {
+      background: rgba(99, 102, 241, 0.1);
+      padding: 8px 15px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--primary);
+      display: inline-block;
+    }
+
+    .birthday-card.today .birthday-countdown {
+      background: rgba(255, 215, 0, 0.2);
+      color: #ff8c00;
+      animation: countdownPulse 1s infinite;
+    }
+
+    @keyframes countdownPulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    .birthday-tag {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: white;
+      padding: 5px 15px;
+      border-radius: 15px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      animation: tagPulse 1.5s infinite;
+    }
+
+    @keyframes tagPulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.8; }
+    }
+
+    .no-birthday {
+      text-align: center;
+      padding: 40px;
+      grid-column: 1 / -1;
+      color: var(--text-light);
+    }
+
+    /* ============================================
+       9. SMART SCHEDULE
+       ============================================ */
+    .schedule-container {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      padding: 30px;
+      overflow-x: auto;
+      box-shadow: var(--shadow);
+      border: var(--glass-border);
+      backdrop-filter: blur(10px);
+      transition: all 0.4s;
+    }
+
+    .schedule-container:hover {
+      box-shadow: var(--shadow-hover);
+    }
+
+    table { 
+      width: 100%; 
+      border-collapse: collapse; 
+      min-width: 600px; 
+    }
+    
+    th, td { 
+      padding: 18px; 
+      text-align: left; 
+      border-bottom: 1px solid rgba(0,0,0,0.05); 
+      transition: all 0.3s;
+    }
+    
+    th { 
+      color: var(--primary); 
+      font-weight: 800; 
+      font-size: 1.1rem;
+      background: rgba(99, 102, 241, 0.05);
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+    }
+    
+    tr:hover td {
+      background: rgba(99, 102, 241, 0.05);
+      transform: translateX(5px);
+    }
+    
+    tr.active-day { 
+      background: rgba(99, 102, 241, 0.1); 
+      border-left: 4px solid var(--primary);
+      animation: activeDayPulse 3s infinite;
+    }
+
+    @keyframes activeDayPulse {
+      0%, 100% { background-color: rgba(99, 102, 241, 0.1); }
+      50% { background-color: rgba(99, 102, 241, 0.15); }
+    }
+
+    /* ============================================
+       10. STICKY NOTE WALL với animation
+       ============================================ */
+    .wall-container {
+      background: #fdfcf0;
+      padding: 40px;
+      border-radius: var(--radius);
+      min-height: 400px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 25px;
+      justify-content: center;
+      align-items: flex-start;
+      position: relative;
+      box-shadow: inset 0 0 50px rgba(0,0,0,0.05), var(--shadow);
+      border: var(--glass-border);
+      animation: wallAppear 1s ease-out;
+    }
+
+    @keyframes wallAppear {
+      from {
+        opacity: 0;
+        transform: scale(0.9);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .sticky-note {
+      width: 200px; 
+      height: 200px; 
+      padding: 20px; 
+      background: #ffc;
+      box-shadow: 5px 5px 15px rgba(0,0,0,0.1); 
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.3rem; 
+      color: #333; 
+      transform: rotate(-2deg);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); 
+      display: flex; 
+      flex-direction: column;
+      justify-content: space-between; 
+      cursor: default;
+      position: relative;
+      animation: noteDrop 0.6s ease-out backwards;
+    }
+
+    @keyframes noteDrop {
+      0% {
+        opacity: 0;
+        transform: translateY(-100px) rotate(-10deg);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0) rotate(-2deg);
+      }
+    }
+
+    .sticky-note:nth-child(2n) {
+      transform: rotate(1deg);
+      animation-delay: 0.1s;
+    }
+
+    .sticky-note:nth-child(3n) {
+      transform: rotate(-1deg);
+      animation-delay: 0.2s;
+    }
+
+    .sticky-note:hover { 
+      transform: scale(1.15) rotate(0deg) !important; 
+      z-index: 10; 
+      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    }
+
+    .sticky-note small { 
+      font-family: 'Nunito', sans-serif; 
+      font-size: 0.8rem; 
+      opacity: 0.6; 
+      text-align: right; 
+    }
+
+    /* ============================================
+       11. NEW NOTE CREATOR UI
+       ============================================ */
+    .add-note-pad-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 30px;
+        padding: 18px 35px;
+        border-radius: 50px;
+        background: linear-gradient(135deg, var(--primary), var(--accent));
+        color: white;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 15px 30px -5px var(--primary-glow);
+        width: fit-content;
+        margin-left: auto;
+        margin-right: auto;
+        border: none;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .add-note-pad-wrapper::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.6s;
+    }
+
+    .add-note-pad-wrapper:hover::before {
+      left: 100%;
+    }
+
+    .add-note-pad-wrapper:hover {
+        transform: translateY(-5px) scale(1.05);
+        box-shadow: 0 20px 40px rgba(99, 102, 241, 0.4);
+        animation: buttonShake 0.5s;
+    }
+
+    @keyframes buttonShake {
+      0%, 100% { transform: translateY(-5px) scale(1.05) rotate(0deg); }
+      25% { transform: translateY(-5px) scale(1.05) rotate(-2deg); }
+      75% { transform: translateY(-5px) scale(1.05) rotate(2deg); }
+    }
+
+    /* ============================================
+       12. MODAL ANIMATIONS
+       ============================================ */
+    .modal-overlay {
+      position: fixed; 
+      top: 0; 
+      left: 0; 
+      width: 100%; 
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7); 
+      backdrop-filter: blur(10px);
+      z-index: 10000; 
+      display: flex; 
+      align-items: center; 
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden; 
+      transition: opacity 0.5s ease-out, visibility 0.5s; 
+    }
+
+    .modal-overlay.open {
+      opacity: 1;
+      visibility: visible;
+      animation: modalFadeIn 0.5s;
+    }
+
+    @keyframes modalFadeIn {
+      from {
+        backdrop-filter: blur(0px);
+        background: rgba(0, 0, 0, 0);
+      }
+      to {
+        backdrop-filter: blur(10px);
+        background: rgba(0, 0, 0, 0.7);
+      }
+    }
+
+    .modal-content, .note-creator-content {
+      width: 90%; 
+      max-width: 500px; 
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      padding: 35px;
+      box-shadow: 0 40px 80px rgba(0, 0, 0, 0.4); 
+      position: relative;
+      border: var(--glass-border);
+      backdrop-filter: blur(20px);
+      
+      transform: scale(0.7) translateY(50px); 
+      opacity: 0;
+      transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.6s ease-in;
+    }
+
+    .modal-overlay.open .modal-content,
+    .modal-overlay.open .note-creator-content {
+      transform: scale(1) translateY(0);
+      opacity: 1;
+      animation: modalBounce 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); 
+    }
+
+    @keyframes modalBounce {
+      0% { transform: scale(0.5) translateY(100px); }
+      60% { transform: scale(1.05) translateY(-10px); }
+      100% { transform: scale(1) translateY(0); }
+    }
+
+    .modal-overlay.closing {
+      opacity: 0;
+      visibility: hidden;
+    }
+    .modal-overlay.closing .modal-content,
+    .modal-overlay.closing .note-creator-content {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+
+    .close-btn { 
+      position: absolute; 
+      top: 15px; 
+      right: 15px; 
+      background: none; 
+      border: none; 
+      font-size: 1.5rem; 
+      color: var(--text-light); 
+      cursor: pointer; 
+      transition: color 0.2s; 
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: rgba(0,0,0,0.05);
+    }
+    .close-btn:hover { 
+      color: var(--accent); 
+      background: rgba(0,0,0,0.1);
+      transform: rotate(90deg);
+    }
+
+    /* ============================================
+       13. STUDENT PROFILE MODAL
+       ============================================ */
+    .profile-header { 
+      text-align: center; 
+      margin-bottom: 25px; 
+    }
+    .avatar { 
+      width: 120px; 
+      height: 120px; 
+      border-radius: 50%; 
+      object-fit: cover; 
+      border: 5px solid var(--primary); 
+      box-shadow: 0 0 0 4px var(--primary-glow); 
+      margin-bottom: 15px; 
+      transition: transform 0.5s;
+    }
+    .avatar:hover {
+      transform: scale(1.1) rotate(10deg);
+    }
+    .nickname { 
+      color: var(--text-light); 
+      font-style: italic; 
+      font-size: 0.9rem; 
+    }
+    .profile-body { 
+      margin-bottom: 25px; 
+      padding: 15px; 
+      border-radius: 12px; 
+      background: rgba(99, 102, 241, 0.1); 
+    }
+    .profile-stat { 
+      display: flex; 
+      gap: 10px; 
+      margin-bottom: 8px; 
+      font-size: 0.95rem; 
+      align-items: center; 
+    }
+    .profile-stat strong { 
+      color: var(--primary); 
+      font-weight: 700; 
+    }
+    .profile-stat i { 
+      color: var(--accent); 
+    }
+    blockquote { 
+      font-family: 'Dancing Script', cursive; 
+      font-size: 1.5rem; 
+      text-align: center; 
+      color: var(--text-main); 
+      padding: 10px 0; 
+      border-top: 1px dashed var(--text-light); 
+      border-bottom: 1px dashed var(--text-light); 
+    }
+
+    /* ============================================
+       14. ADMIN BUTTON & TOOLBAR
+       ============================================ */
+    .admin-btn {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--primary), var(--accent));
+        color: white;
+        border: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+        z-index: 9998;
+        box-shadow: 0 8px 25px rgba(99, 102, 241, 0.5);
+        transition: transform 0.3s, box-shadow 0.3s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .admin-btn:hover {
+        transform: scale(1.1);
+        box-shadow: 0 12px 35px rgba(99, 102, 241, 0.7);
+    }
+    .admin-btn.active {
+        background: linear-gradient(135deg, #10b981, #3b82f6);
+        animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+      70% { box-shadow: 0 0 0 15px rgba(16, 185, 129, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+    }
+    
+    .admin-toolbar {
+        position: fixed;
+        top: 100px;
+        right: 30px;
+        background: var(--card-bg);
+        border: var(--glass-border);
+        border-radius: var(--radius);
+        padding: 20px;
+        z-index: 9997;
+        box-shadow: var(--shadow);
+        backdrop-filter: blur(10px);
+        transform: translateX(120%) translateY(-20px);
+        transition: transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+        max-width: 300px;
+    }
+    .admin-toolbar.active {
+        transform: translateX(0) translateY(0);
+        animation: toolbarSlideIn 0.7s;
+    }
+
+    @keyframes toolbarSlideIn {
+      0% {
+        transform: translateX(120%) translateY(-20px);
+        opacity: 0;
+      }
+      100% {
+        transform: translateX(0) translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .admin-toolbar h3 {
+        margin-bottom: 15px;
+        color: var(--primary);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    .admin-toolbar button {
+        width: 100%;
+        padding: 12px;
+        margin-bottom: 10px;
+        border-radius: 12px;
+        border: none;
+        background: rgba(99, 102, 241, 0.1);
+        color: var(--text-main);
+        font-weight: 600;
+        cursor: pointer;
+        transition: 0.3s;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        justify-content: center;
+    }
+    .admin-toolbar button:hover {
+        background: var(--primary);
+        color: white;
+    }
+    .admin-toolbar input, .admin-toolbar textarea, .admin-toolbar select {
+        width: 100%;
+        padding: 12px;
+        margin-bottom: 10px;
+        border-radius: 12px;
+        border: 1px solid var(--text-light);
+        background: var(--card-bg);
+        color: var(--text-main);
+        font-family: 'Nunito', sans-serif;
+    }
+    
+    /* Edit mode indicators */
+    .editable {
+        position: relative;
+    }
+    .editable:hover::after {
+        content: "✏️";
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        font-size: 0.8rem;
+        opacity: 0.7;
+    }
+    .edit-mode .editable {
+        outline: 2px dashed rgba(99, 102, 241, 0.5);
+        padding: 2px;
+        border-radius: 4px;
+        cursor: text;
+    }
+    
+    /* Delete button for notes */
+    .delete-note {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        background: var(--accent);
+        color: white;
+        border: none;
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        font-size: 0.8rem;
+        cursor: pointer;
+        opacity: 0;
+        transition: opacity 0.3s;
+        z-index: 20;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .sticky-note:hover .delete-note {
+        opacity: 1;
+    }
+    
+    /* Student edit button */
+    .edit-student {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        background: var(--primary);
+        color: white;
+        border: none;
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        font-size: 0.8rem;
+        cursor: pointer;
+        opacity: 0;
+        transition: opacity 0.3s;
+        z-index: 20;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .students li:hover .edit-student {
+        opacity: 1;
+    }
+
+    /* ============================================
+       15. NOTE MANAGER STYLES
+       ============================================ */
+    .filter-btn {
+        padding: 8px 16px;
+        border: none;
+        border-radius: 8px;
+        background: rgba(99, 102, 241, 0.1);
+        color: var(--text-main);
+        font-weight: 600;
+        cursor: pointer;
+        transition: 0.3s;
+        font-size: 0.9rem;
+    }
+    .filter-btn:hover {
+        background: var(--primary);
+        color: white;
+    }
+    .filter-btn.active {
+        background: var(--primary);
+        color: white;
+    }
+
+    .note-manager-item {
+        background: var(--card-bg);
+        border-radius: 12px;
+        padding: 20px;
+        margin-bottom: 15px;
+        border: 1px solid rgba(99, 102, 241, 0.2);
+        transition: 0.3s;
+    }
+    .note-manager-item:hover {
+        border-color: var(--primary);
+        box-shadow: 0 5px 15px rgba(99, 102, 241, 0.1);
+    }
+
+    .note-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 10px;
+    }
+
+    .note-meta {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    .note-color-indicator {
+        width: 20px;
+        height: 20px;
+        border-radius: 4px;
+        border: 2px solid white;
+        box-shadow: 0 0 0 1px rgba(0,0,0,0.1);
+    }
+
+    .note-author {
+        font-weight: 700;
+        color: var(--primary);
+    }
+
+    .note-date {
+        font-size: 0.85rem;
+        color: var(--text-light);
+        background: rgba(0,0,0,0.05);
+        padding: 2px 8px;
+        border-radius: 4px;
+    }
+
+    .note-content {
+        padding: 12px;
+        background: rgba(0,0,0,0.02);
+        border-radius: 8px;
+        margin-bottom: 15px;
+        font-size: 1rem;
+        line-height: 1.5;
+    }
+
+    .note-actions {
+        display: flex;
+        gap: 10px;
+        justify-content: flex-end;
+    }
+
+    .note-actions button {
+        padding: 8px 15px;
+        border: none;
+        border-radius: 6px;
+        font-weight: 600;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        font-size: 0.9rem;
+        transition: 0.3s;
+    }
+
+    .edit-note-btn {
+        background: rgba(16, 185, 129, 0.1);
+        color: #10b981;
+    }
+    .edit-note-btn:hover {
+        background: #10b981;
+        color: white;
+    }
+
+    .delete-note-btn {
+        background: rgba(244, 63, 94, 0.1);
+        color: #f43f5e;
+    }
+    .delete-note-btn:hover {
+        background: #f43f5e;
+        color: white;
+    }
+
+    .bulk-actions {
+        display: flex;
+        gap: 10px;
+        margin-top: 20px;
+        padding-top: 20px;
+        border-top: 1px solid rgba(0,0,0,0.1);
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    .bulk-actions select {
+        padding: 8px 15px;
+        border-radius: 6px;
+        border: 1px solid var(--text-light);
+        background: var(--card-bg);
+        color: var(--text-main);
+        min-width: 150px;
+    }
+
+    .bulk-delete-btn {
+        background: rgba(244, 63, 94, 0.1);
+        color: #f43f5e;
+        padding: 8px 15px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+    .bulk-delete-btn:hover {
+        background: #f43f5e;
+        color: white;
+    }
+
+    .bulk-color-btn {
+        background: rgba(99, 102, 241, 0.1);
+        color: var(--primary);
+        padding: 8px 15px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+    .bulk-color-btn:hover {
+        background: var(--primary);
+        color: white;
+    }
+
+    .note-checkbox {
+        width: 18px;
+        height: 18px;
+        cursor: pointer;
+    }
+
+    /* ============================================
+       16. NOTE CREATOR SPECIFIC
+       ============================================ */
+    .note-sheet-preview {
+        position: relative;
+        height: 250px;
+        margin-bottom: 20px;
+        perspective: 1000px;
+    }
+    .note-sheet-back {
+        position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+        background: #e0e0e0;
+        border-radius: 10px;
+    }
+    .note-sheet-front {
+        position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+        background: #ffc;
+        border-radius: 10px;
+        padding: 15px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        
+        transform: rotateX(90deg) scale(0.8);
+        opacity: 0;
+        transform-origin: top center;
+        transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1), opacity 0.4s 0.2s;
+    }
+
+    #noteCreatorModal.open .note-sheet-front {
+        transform: rotateX(0deg) scale(1);
+        opacity: 1;
+    }
+
+    .note-sheet-front textarea, .note-sheet-front input {
+        width: 100%;
+        border: none;
+        background: transparent;
+        font-family: 'Dancing Script', cursive;
+        font-size: 1.2rem;
+        color: #333;
+        resize: none;
+        padding: 5px 0;
+    }
+    .note-sheet-front textarea {
+        height: 75%;
+        border-bottom: 1px dotted rgba(0, 0, 0, 0.2);
+        margin-bottom: 5px;
+    }
+    .note-sheet-front input {
+        font-family: 'Nunito', sans-serif;
+        font-size: 0.9rem;
+        font-weight: 600;
+        text-align: right;
+        color: var(--primary);
+    }
+    .note-sheet-front textarea:focus, .note-sheet-front input:focus {
+        outline: none;
+    }
+    .submit-note-btn {
+        width: 100%;
+        padding: 15px;
+        background: var(--accent);
+        color: white;
+        border: none;
+        border-radius: 10px;
+        font-size: 1.1rem;
+        font-weight: 700;
+        cursor: pointer;
+        transition: 0.2s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+    }
+    .submit-note-btn:hover {
+        background: #e73050;
+        transform: translateY(-2px);
+    }
+
+    /* ============================================
+       17. FOOTER & MISC
+       ============================================ */
+    footer {
+      text-align: center; 
+      padding: 40px; 
+      color: var(--text-light); 
+      border-top: 1px solid rgba(0,0,0,0.05); 
+      margin-top: 50px;
+    }
+
+    .hidden { 
+      opacity: 0; 
+      transform: translateY(50px); 
+      transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1); 
+    }
+    
+    .show { 
+      opacity: 1; 
+      transform: translateY(0); 
+    }
+
+    /* ============================================
+       18. RESPONSIVE DESIGN
+       ============================================ */
+    @media (max-width: 768px) {
+      .bento-grid { 
+        grid-template-columns: 1fr; 
+        grid-template-rows: auto; 
+        gap: 15px;
+      }
+      
+      .bento-card.large, 
+      .bento-card.medium { 
+        grid-column: span 1; 
+      }
+      
+      nav { 
+        flex-direction: column; 
+        gap: 10px; 
+        width: 95%; 
+        border-radius: 20px; 
+        padding: 15px;
+      }
+      
+      header h1 { 
+        font-size: 3.5rem; 
+      }
+      
+      .admin-btn { 
+        bottom: 20px; 
+        right: 20px; 
+        width: 50px; 
+        height: 50px; 
+        font-size: 1.2rem;
+      }
+      
+      .admin-toolbar { 
+        top: 80px; 
+        right: 15px; 
+        left: 15px; 
+        max-width: none; 
+      }
+      
+      .cursor-dot, 
+      .cursor-outline { 
+        display: none; 
+      }
+      
+      .birthday-container {
+        grid-template-columns: 1fr;
+      }
+      
+      .floating-element {
+        display: none;
+      }
+
+      .students {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      }
+
+      section h2 {
+        font-size: 2rem;
+      }
+
+      .modal-content, .note-creator-content {
+        width: 95%;
+        padding: 25px;
+      }
+
+      .bulk-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      
+      .bulk-actions select {
+        width: 100%;
+      }
+
+      .note-meta {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    /* ============================================
+       19. ANIMATION UTILITIES
+       ============================================ */
+    @keyframes spin { 
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Thêm styles cho birthday badge trong student list */
+    .birthday-badge {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: gold;
+      color: #333;
+      font-size: 0.7rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      animation: pulse 1.5s infinite;
+    }
+
+    /* Thêm style cho notification */
+    .notification {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      padding: 15px 25px;
+      border-radius: 12px;
+      color: white;
+      font-weight: 600;
+      z-index: 10001;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      transform: translateX(150%);
+      transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.2);
+      cursor: pointer;
+    }
+
+    .notification:hover {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+    }
+
+    /* Keyframes cho shake animation */
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+      20%, 40%, 60%, 80% { transform: translateX(5px); }
+    }
+
+    /* Keyframes cho snowfall */
+    @keyframes snowfall {
+      0% {
+        transform: translateY(-20px) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    /* Keyframes cho ripple effect */
+    @keyframes ripple {
+      to {
+        transform: scale(4);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Floating Background Elements -->
+  <div class="gradient-bg"></div>
+  <div class="floating-element floating-1"></div>
+  <div class="floating-element floating-2"></div>
+  <div class="floating-element floating-3"></div>
+
+  <!-- Custom Cursor -->
+  <div class="cursor-dot"></div>
+  <div class="cursor-outline"></div>
+
+  <!-- Admin Button -->
+  <button class="admin-btn" id="adminBtn" onclick="toggleAdminToolbar()">
+    <i class="fa-solid fa-lock"></i>
+  </button>
+
+  <!-- Admin Toolbar -->
+  <div class="admin-toolbar" id="adminToolbar">
+    <h3><i class="fa-solid fa-user-shield"></i> Quản trị viên</h3>
+    
+    <div id="loginForm">
+      <input type="password" id="adminPassword" placeholder="Nhập mật khẩu">
+      <button onclick="adminLogin()"><i class="fa-solid fa-key"></i> Đăng nhập</button>
+    </div>
+    
+    <div id="adminControls" style="display: none;">
+      <button onclick="toggleEditMode()"><i class="fa-solid fa-edit"></i> Chế độ chỉnh sửa</button>
+      <button onclick="openStudentManager()"><i class="fa-solid fa-users"></i> Quản lý học sinh</button>
+      <button onclick="openNoteManager()"><i class="fa-solid fa-sticky-note"></i> Quản lý lưu bút</button>
+      <button onclick="openBirthdayManager()"><i class="fa-solid fa-cake-candles"></i> Quản lý sinh nhật</button>
+      <button onclick="saveAllData()"><i class="fa-solid fa-save"></i> Lưu thay đổi</button>
+      <button onclick="adminLogout()"><i class="fa-solid fa-sign-out-alt"></i> Đăng xuất</button>
+    </div>
+  </div>
+
+  <header>
+    <p class="editable" data-key="welcomeText">Chào mừng đến với vũ trụ</p>
+    <h1 class="editable" data-key="className">10A8</h1>
+    <div id="countdown">
+      Loading...
+    </div>
+    <div class="scroll-down" onclick="scrollToSection('stats')"><i class="fa-solid fa-chevron-down"></i></div>
+  </header>
+
+  <nav>
+    <div class="nav-links">
+      <a href="#stats" onclick="setActiveNav(this)">Thống kê</a>
+      <a href="#birthday" onclick="setActiveNav(this)">Sinh nhật</a>
+      <a href="#schedule" onclick="setActiveNav(this)">Lịch học</a>
+      <a href="#students" onclick="setActiveNav(this)">Thành viên</a>
+      <a href="#wall" onclick="setActiveNav(this)">Lưu bút</a>
+    </div>
+    <button class="theme-btn" onclick="toggleTheme()"><i class="fa-solid fa-moon"></i></button>
+  </nav>
+
+  <main>
+    
+    <section id="stats" class="hidden">
+      <h2 class="editable" data-key="statsTitle">Tổng quan lớp học</h2>
+      <div class="bento-grid">
+        <div class="bento-card large tilt-card">
+          <h3 class="editable" data-key="totalStudents">42</h3>
+          <p class="editable" data-key="totalStudentsText">Thành viên ưu tú</p>
+        </div>
+        <div class="bento-card tilt-card">
+          <strong class="editable" data-key="maleCount" style="color: #60a5fa">30</strong>
+          <span class="editable" data-key="maleText">Nam</span>
+        </div>
+        <div class="bento-card tilt-card">
+          <strong class="editable" data-key="femaleCount" style="color: #ec4899">12</strong>
+          <span class="editable" data-key="femaleText">Nữ</span>
+        </div>
+        <div class="bento-card medium tilt-card" style="background: linear-gradient(135deg, #10b981, #3b82f6); color: white;">
+          <i class="fa-solid fa-graduation-cap" style="font-size: 2.5rem; margin-bottom: 10px;"></i>
+          <span class="editable" data-key="teacherName">GVCN: Thầy Nguyễn Bá Huy</span>
+        </div>
+        <div class="bento-card tilt-card">
+          <strong class="editable" data-key="ranking">Top 67</strong>
+          <span class="editable" data-key="rankingText">Thi đua tuần</span>
+        </div>
+        <div class="bento-card tilt-card">
+          <strong class="editable" data-key="unity">100%</strong>
+          <span class="editable" data-key="unityText">Đoàn kết</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="birthday" class="hidden">
+      <h2>🎉 Sinh nhật thành viên</h2>
+      <div class="birthday-section tilt-card">
+        <p style="text-align: center; margin-bottom: 30px; color: var(--text-light); font-size: 1.1rem;">
+          <i class="fa-solid fa-cake-candles" style="color: var(--accent); margin-right: 10px;"></i>
+          Chúc mừng sinh nhật những thành viên có sinh nhật trong tháng này!
+        </p>
+        <div class="birthday-container" id="birthdayContainer">
+          <!-- Birthday cards will be populated from JavaScript -->
+        </div>
+        <div style="text-align: center; margin-top: 30px;">
+          <button onclick="openBirthdayManager()" style="background: var(--primary); color: white; border: none; padding: 12px 25px; border-radius: 25px; cursor: pointer; font-weight: 600; transition: all 0.3s; display: inline-flex; align-items: center; gap: 10px;">
+            <i class="fa-solid fa-calendar-plus"></i> Quản lý sinh nhật
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section id="students" class="hidden">
+        <h2 class="editable" data-key="studentsTitle">Danh sách thành viên</h2>
+        <div class="student-list-container tilt-card">
+            <ul class="students" id="studentList">
+        
+            </ul>
+        </div>
+    </section>
+
+    <section id="schedule" class="hidden">
+      <h2 class="editable" data-key="scheduleTitle">Thời khóa biểu thông minh</h2>
+      <div class="schedule-container tilt-card">
+        <table id="scheduleTable">
+          <thead>
+            <tr>
+              <th class="editable" data-key="dayColumn">Thứ</th>
+              <th class="editable" data-key="morningColumn">Sáng (Tiết 1-5)</th>
+              <th class="editable" data-key="afternoonColumn">Chiều (Tiết 1-5)</th>
+              <th class="editable" data-key="noteColumn">Ghi chú</th>
+            </tr>
+          </thead>
+          <tbody id="scheduleBody">
+            <!-- Schedule will be populated from JavaScript -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="wall" class="hidden">
+      <h2 class="editable" data-key="wallTitle">Bức tường lưu bút</h2>
+      <p class="editable" data-key="wallDescription" style="text-align: center; margin-bottom: 20px; color: var(--text-light);">Dán một tờ giấy nhớ để đánh dấu bạn đã ghé qua nhé!</p>
+      
+      <div class="wall-container" id="stickyWall">
+        <!-- Notes will be populated from JavaScript -->
+      </div>
+
+      <div class="add-note-pad-wrapper" onclick="openNoteCreator()">
+          <i class="fa-solid fa-note-sticky"></i>
+          <span>Dán lời nhắn mới</span>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p class="editable" data-key="footerText">© 2025 Lớp 10A8 • Designed for 10A8</p>
+  </footer>
+
+  <!-- Student Profile Modal -->
+  <div id="studentModal" class="modal-overlay">
+    <div class="modal-content tilt-card" data-tilt data-tilt-max="5">
+      <button class="close-btn" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></button>
+      
+      <div class="profile-header">
+        <img id="profileAvatar" src="https://i.pravatar.cc/150" alt="Avatar" class="avatar">
+        <h3 id="profileName"></h3>
+        <p id="profileNickname" class="nickname"></p>
+      </div>
+      
+      <div class="profile-body">
+        <div class="profile-stat">
+          <i class="fa-solid fa-crown"></i>
+          <strong>Chức vụ:</strong> <span id="profilePosition" class="editable-modal"></span>
+        </div>
+        <div class="profile-stat">
+          <i class="fa-solid fa-heart"></i>
+          <strong>Sở thích:</strong> <span id="profileHobbies" class="editable-modal"></span>
+        </div>
+        <div class="profile-stat">
+          <i class="fa-solid fa-trophy"></i>
+          <strong>Thành tích:</strong> <span id="profileAchievements" class="editable-modal"></span>
+        </div>
+      </div>
+      
+      <blockquote id="profileQuote" class="editable-modal"></blockquote>
+    </div>
+  </div>
+  
+  <!-- Note Creator Modal -->
+  <div id="noteCreatorModal" class="modal-overlay">
+      <div class="note-creator-content tilt-card" data-tilt data-tilt-max="5">
+          <button class="close-btn" onclick="closeNoteCreator()"><i class="fa-solid fa-xmark"></i></button>
+          
+          <h3 style="margin-bottom: 20px; color: var(--primary);">Viết Lưu Bút</h3>
+          
+          <div class="note-sheet-preview">
+              <div class="note-sheet-back"></div>
+              <div class="note-sheet-front">
+                  <textarea id="noteMessageInput" placeholder="✍️ Ghi thông điệp của bạn vào đây (Tối đa 150 ký tự)" maxlength="150" rows="5"></textarea>
+                  <input type="text" id="noteNameInput" placeholder="Tên/Nickname (Tùy chọn)">
+              </div>
+          </div>
+
+          <button class="submit-note-btn" onclick="addNote()">Dán lên tường <i class="fa-solid fa-paper-plane"></i></button>
+      </div>
+  </div>
+  
+  <!-- Student Manager Modal -->
+  <div id="studentManagerModal" class="modal-overlay">
+      <div class="modal-content" style="max-width: 600px;">
+          <button class="close-btn" onclick="closeStudentManager()"><i class="fa-solid fa-xmark"></i></button>
+          
+          <h3 style="margin-bottom: 20px; color: var(--primary); display: flex; align-items: center; gap: 10px;">
+            <i class="fa-solid fa-users-gear"></i> Quản lý học sinh
+          </h3>
+          
+          <div style="margin-bottom: 20px;">
+            <button onclick="addNewStudent()" style="background: var(--primary); color: white; padding: 12px 25px; border-radius: 10px; border: none; cursor: pointer; font-weight: 600; display: inline-flex; align-items: center; gap: 10px;">
+              <i class="fa-solid fa-plus"></i> Thêm học sinh mới
+            </button>
+          </div>
+          
+          <div id="studentManagerList" style="max-height: 400px; overflow-y: auto;">
+            <!-- Student list for management will be populated here -->
+          </div>
+      </div>
+  </div>
+
+  <!-- Note Manager Modal -->
+  <div id="noteManagerModal" class="modal-overlay">
+    <div class="modal-content" style="max-width: 800px;">
+      <button class="close-btn" onclick="closeNoteManager()"><i class="fa-solid fa-xmark"></i></button>
+      
+      <h3 style="margin-bottom: 20px; color: var(--primary); display: flex; align-items: center; gap: 10px;">
+        <i class="fa-solid fa-sticky-note"></i> Quản lý lưu bút
+      </h3>
+      
+      <div style="margin-bottom: 20px; display: flex; gap: 10px; flex-wrap: wrap;">
+        <button onclick="filterNotes('all')" class="filter-btn active" data-filter="all">Tất cả</button>
+        <button onclick="filterNotes('today')" class="filter-btn" data-filter="today">Hôm nay</button>
+        <button onclick="filterNotes('week')" class="filter-btn" data-filter="week">Tuần này</button>
+        <button onclick="filterNotes('recent')" class="filter-btn" data-filter="recent">Mới nhất</button>
+      </div>
+      
+      <div id="noteStats" style="background: rgba(99, 102, 241, 0.1); padding: 15px; border-radius: 10px; margin-bottom: 20px;">
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px;">
+          <div style="text-align: center;">
+            <div style="font-size: 2rem; font-weight: 800; color: var(--primary);" id="totalNotesCount">0</div>
+            <div style="font-size: 0.9rem; color: var(--text-light);">Tổng lưu bút</div>
+          </div>
+          <div style="text-align: center;">
+            <div style="font-size: 2rem; font-weight: 800; color: #10b981;" id="todayNotesCount">0</div>
+            <div style="font-size: 0.9rem; color: var(--text-light);">Hôm nay</div>
+          </div>
+          <div style="text-align: center;">
+            <div style="font-size: 2rem; font-weight: 800; color: #ec4899;" id="popularAuthor">-</div>
+            <div style="font-size: 0.9rem; color: var(--text-light);">Tác giả tích cực</div>
+          </div>
+        </div>
+      </div>
+      
+      <div style="max-height: 400px; overflow-y: auto; padding-right: 10px;">
+        <div id="noteManagerList">
+          <!-- Notes will be populated here -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Birthday Manager Modal (Mới) -->
+  <div id="birthdayManagerModal" class="modal-overlay">
+    <div class="modal-content" style="max-width: 600px;">
+      <button class="close-btn" onclick="closeBirthdayManager()"><i class="fa-solid fa-xmark"></i></button>
+      
+      <h3 style="margin-bottom: 20px; color: var(--primary); display: flex; align-items: center; gap: 10px;">
+        <i class="fa-solid fa-cake-candles"></i> Quản lý sinh nhật
+      </h3>
+      
+      <div style="margin-bottom: 20px; background: rgba(99, 102, 241, 0.1); padding: 20px; border-radius: 15px;">
+        <p><i class="fa-solid fa-info-circle" style="color: var(--primary); margin-right: 10px;"></i> Thêm hoặc chỉnh sửa ngày sinh nhật cho từng học sinh.</p>
+      </div>
+      
+      <div id="birthdayManagerList" style="max-height: 400px; overflow-y: auto; padding-right: 10px;">
+        <!-- Birthday management list will be populated here -->
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ============================================
+    // 1. ADMIN CONFIGURATION & GLOBAL VARIABLES
+    // ============================================
+    const ADMIN_PASSWORD = "Niggerhaha10a8";
+    let isAdminLoggedIn = false;
+    let isEditMode = false;
+    let currentStudentKey = null;
+
+    // ============================================
+    // 2. DỮ LIỆU HỌC SINH 
+    // ============================================
+    const studentsFromImage = [
+      { name: "Bùi Nhật Minh", birthday: "29/07" },
+      { name: "Bùi Trung Kiên", birthday: "22/04" },
+      { name: "Đinh Quang Trường", birthday: "22/04" },
+      { name: "Đoàn Phúc Uy Vũ", birthday: "25/02" },
+      { name: "Đoàn Trần Như Ngọc", birthday: "01/01" },
+      { name: "Đặng Ngọc Duy", birthday: "24/01" },
+      { name: "Hoàng Đức Gia Huy", birthday: "08/06" },
+      { name: "Hoàng Gia Khánh", birthday: "06/07" },
+      { name: "Hoàng Minh Sơn", birthday: "01/07" },
+      { name: "Hoàng Tuệ Vy", birthday: "23/02" },
+      { name: "Lê Bảo Nam", birthday: "28/04" },
+      { name: "Lê Đức Tùng", birthday: "02/02" },
+      { name: "Lê Hà Anh", birthday: "09/04" },
+      { name: "Lê Hoàng Linh", birthday: "11/12" },
+      { name: "Lê Nhật Minh", birthday: "16/12" },
+      { name: "Lê Phương Thảo", birthday: "17/04" },
+      { name: "Lý Khánh Linh", birthday: "30/07" },
+      { name: "Ngô Nam Phong", birthday: "06/11" },
+      { name: "Nguyễn Công Thiện Vũ", birthday: "03/11" },
+      { name: "Nguyễn Gia Bình", birthday: "10/01" },
+      { name: "Nguyễn Gia Hiếu", birthday: "28/08" },
+      { name: "Nguyễn Minh Quân", birthday: "15/07" },
+      { name: "Nguyễn Ngọc Nhi", birthday: "17/04" },
+      { name: "Nguyễn Ngọc Trang", birthday: "29/08" },
+      { name: "Nguyễn Quỳnh Anh", birthday: "06/03" },
+      { name: "Nguyễn Thị Hoài Anh", birthday: "25/04" },
+      { name: "Nguyễn Tống Lâm", birthday: "13/01" },
+      { name: "Nguyễn Tuấn Anh", birthday: "03/05" },
+      { name: "Nguyễn Văn Bách Tòng", birthday: "16/07" },
+      { name: "Nguyễn Viết Tài", birthday: "05/05" },
+      { name: "Phạm Bảo Phong", birthday: "04/04" },
+      { name: "Phạm Hải Anh", birthday: "20/10" },
+      { name: "Phạm Khánh Nguyên", birthday: "09/10" },
+      { name: "Phạm Ngọc Tuyết Nhi", birthday: "28/06" },
+      { name: "Phạm Trung Hiếu", birthday: "05/10" },
+      { name: "Phùng Đức Tuấn", birthday: "30/09" },
+      { name: "Phùng Nhật Minh", birthday: "27/10" },
+      { name: "Tạ Gia Minh", birthday: "09/07" },
+      { name: "Trần Ka Ka", birthday: "16/01" },
+      { name: "Trần Quang Minh", birthday: "03/12" },
+      { name: "Trương Khánh An", birthday: "30/01" },
+      { name: "Từ Hồng Minh", birthday: "23/03" }
+    ];
+
+    let sortedStudentKeys = [];
+    let appData = {
+      editableTexts: {
+        welcomeText: "Chào mừng đến với vũ trụ",
+        className: "10A8",
+        statsTitle: "Tổng quan lớp học",
+        totalStudents: "42",
+        totalStudentsText: "Thành viên ưu tú",
+        maleCount: "30",
+        maleText: "Nam",
+        femaleCount: "12",
+        femaleText: "Nữ",
+        teacherName: "GVCN: Thầy Nguyễn Bá Huy",
+        ranking: "Top 67",
+        rankingText: "Thi đua tuần",
+        unity: "100%",
+        unityText: "Đoàn kết",
+        studentsTitle: "Danh sách thành viên",
+        scheduleTitle: "Thời khóa biểu thông minh",
+        dayColumn: "Thứ",
+        morningColumn: "Sáng (Tiết 1-5)",
+        afternoonColumn: "Chiều (Tiết 1-9)",
+        noteColumn: "Ghi chú",
+        wallTitle: "Bức tường lưu bút",
+        wallDescription: "Dán một tờ giấy nhớ để đánh dấu bạn đã ghé qua nhé!",
+        footerText: "© 2025 Lớp 10A8 • Designed for 10A8"
+      },
+      
+      studentData: {},
+      
+      scheduleData: [
+        { day: 'Thứ 2', morning: 'HĐTN, Toán, Văn, Văn, Hoá', afternoon: '', note: '' },
+        { day: 'Thứ 3', morning: 'Anh, Anh, Văn, Toán, Toán', afternoon: '', note: '' },
+        { day: 'Thứ 4', morning: 'Lý, Lý, GDQP, Sử, Sử', afternoon: 'Tin, Tin, Thể dục, Thể dục', note: '' },
+        { day: 'Thứ 5', morning: 'Anh, Hoá, Hoá, Lý', afternoon: '', note: 'Tiết 5 trống' },
+        { day: 'Thứ 6', morning: 'Nhạc, Nhạc, GDĐP, Toán, HĐTN', afternoon: '', note: '' },
+        { day: 'Thứ 7', morning: '', afternoon: '', note: 'Nghỉ' }
+      ],
+      
+      stickyNotes: [
+        { id: 1, text: 'Tính năng đang được phát triển', author: 'Uy Vũ', color: '#ff9', rotation: -3, timestamp: new Date().toISOString(), status: 'active' },
+      ],
+      
+      colors: ['#ff9', '#caf0f8', '#ffcad4', '#e2f0cb', '#e0c3fc']
+    };
+
+    // Khởi tạo studentData và danh sách thứ tự
+    (function buildStudentData() {
+      appData.studentData = {};
+      sortedStudentKeys = [];
+      studentsFromImage.forEach((s, idx) => {
+        let key = 'sv_' + (idx + 1);
+        appData.studentData[key] = {
+          name: s.name,
+          nickname: '',
+          avatar: 'https://i.pravatar.cc/150?u=' + key,
+          position: 'Thành viên',
+          hobbies: 'Chưa cập nhật',
+          achievements: 'Chưa có',
+          quote: 'Hãy viết điều gì đó truyền cảm hứng!',
+          birthday: s.birthday
+        };
+        sortedStudentKeys.push(key);
+      });
+    })();
+
+    // ============================================
+    // 3. KHỞI TẠO ỨNG DỤNG
+    // ============================================
+    document.addEventListener('DOMContentLoaded', function() {
+      loadSavedData();
+      initEditableTexts();
+      initStudentList();
+      initSchedule();
+      initStickyNotes();
+      initBirthdaySection();
+      initCountdown();
+      initScrollReveal();
+      initCustomCursor();
+      initTiltEffects();
+      initSmartSchedule();
+      initNavHighlight();
+      checkAdminSession();
+      initAutoShowSections();
+      initAnimations();
+      checkDailyBirthdays();
+      checkNewYear();
+      
+      console.log('🚀 Ứng dụng lớp 10A8 đã khởi động thành công!');
+    });
+
+    // ============================================
+    // 4. HỆ THỐNG SINH NHẬT
+    // ============================================
+    function initBirthdaySection() {
+      const birthdayContainer = document.getElementById('birthdayContainer');
+      if (!birthdayContainer) return;
+      
+      birthdayContainer.innerHTML = '';
+      
+      const today = new Date();
+      const currentMonth = today.getMonth() + 1;
+      const currentDate = today.getDate();
+      
+      let birthdayStudents = [];
+      
+      sortedStudentKeys.forEach(key => {
+        const student = appData.studentData[key];
+        if (student.birthday) {
+          const [day, month] = student.birthday.split('/').map(Number);
+          
+          if (month === currentMonth) {
+            let daysUntil = day - currentDate;
+            if (daysUntil < 0) daysUntil += 31;
+            
+            birthdayStudents.push({
+              key: key,
+              ...student,
+              day: day,
+              month: month,
+              daysUntil: daysUntil,
+              isToday: (day === currentDate && month === currentMonth)
+            });
+          }
+        }
+      });
+      
+      birthdayStudents.sort((a, b) => {
+        if (a.isToday && !b.isToday) return -1;
+        if (!a.isToday && b.isToday) return 1;
+        return a.day - b.day;
+      });
+      
+      if (birthdayStudents.length === 0) {
+        birthdayContainer.innerHTML = `
+          <div class="no-birthday">
+            <i class="fa-solid fa-cake" style="font-size: 3rem; margin-bottom: 15px; opacity: 0.5; animation: floatUpDown 3s infinite;"></i>
+            <h3 style="color: var(--text-light); margin-bottom: 10px;">Không có sinh nhật trong tháng này</h3>
+            <p>Hãy thêm ngày sinh cho các thành viên để không bỏ lỡ sinh nhật của họ!</p>
+          </div>
+        `;
+        return;
+      }
+      
+      birthdayStudents.forEach(student => {
+        const birthdayCard = document.createElement('div');
+        birthdayCard.className = `birthday-card ${student.isToday ? 'today' : ''}`;
+        
+        birthdayCard.innerHTML = `
+          <img src="${student.avatar}" alt="${student.name}" class="birthday-avatar">
+          <div class="birthday-info">
+            <h3 class="birthday-name">${student.name}</h3>
+            <div class="birthday-date">
+              <i class="fa-solid fa-cake-candles"></i>
+              <span>${student.day}/${student.month}</span>
+            </div>
+            <div class="birthday-countdown">
+              ${student.isToday 
+                ? '<i class="fa-solid fa-gift"></i> Hôm nay là sinh nhật!' 
+                : `Còn ${student.daysUntil} ngày`}
+            </div>
+          </div>
+          ${student.isToday ? '<div class="birthday-tag">🎂 SINH NHẬT HÔM NAY!</div>' : ''}
+        `;
+        
+        birthdayCard.onclick = () => openModal(student.key);
+        birthdayContainer.appendChild(birthdayCard);
+      });
+      
+      if (birthdayStudents.some(s => s.isToday)) {
+        createConfetti();
+      }
+    }
+    
+    function createConfetti() {
+      const confettiCount = 50;
+      const confettiContainer = document.createElement('div');
+      confettiContainer.style.position = 'fixed';
+      confettiContainer.style.top = '0';
+      confettiContainer.style.left = '0';
+      confettiContainer.style.width = '100%';
+      confettiContainer.style.height = '100%';
+      confettiContainer.style.pointerEvents = 'none';
+      confettiContainer.style.zIndex = '9998';
+      
+      for (let i = 0; i < confettiCount; i++) {
+        const confetti = document.createElement('div');
+        confetti.style.position = 'absolute';
+        confetti.style.width = '10px';
+        confetti.style.height = '10px';
+        confetti.style.background = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#feca57', '#ff9ff3'][Math.floor(Math.random() * 6)];
+        confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+        confetti.style.left = `${Math.random() * 100}vw`;
+        confetti.style.top = '-20px';
+        confetti.style.opacity = '0.8';
+        
+        const animation = confetti.animate([
+          { transform: 'translateY(0) rotate(0deg)', opacity: 1 },
+          { transform: `translateY(${window.innerHeight + 20}px) rotate(${Math.random() * 360}deg)`, opacity: 0 }
+        ], {
+          duration: 2000 + Math.random() * 3000,
+          delay: Math.random() * 1000,
+          easing: 'cubic-bezier(0.215, 0.61, 0.355, 1)'
+        });
+        
+        confettiContainer.appendChild(confetti);
+        animation.onfinish = () => confetti.remove();
+      }
+      
+      document.body.appendChild(confettiContainer);
+      setTimeout(() => document.body.removeChild(confettiContainer), 5000);
+    }
+    
+    function openBirthdayManager() {
+      if (!isAdminLoggedIn) {
+        showNotification('Vui lòng đăng nhập với quyền quản trị!', 'error');
+        toggleAdminToolbar();
+        return;
+      }
+      
+      const modal = document.getElementById('birthdayManagerModal');
+      modal.classList.remove('closing');
+      modal.classList.add('open');
+      
+      const managerList = document.getElementById('birthdayManagerList');
+      managerList.innerHTML = '';
+      
+      sortedStudentKeys.forEach(key => {
+        const student = appData.studentData[key];
+        const div = document.createElement('div');
+        div.style.padding = '15px';
+        div.style.borderBottom = '1px solid rgba(0,0,0,0.1)';
+        div.style.display = 'flex';
+        div.style.justifyContent = 'space-between';
+        div.style.alignItems = 'center';
+        div.style.flexWrap = 'wrap';
+        div.style.gap = '10px';
+        
+        div.innerHTML = `
+          <div style="flex-grow: 1;">
+            <strong>${student.name}</strong> (@${student.nickname || '...'})<br>
+            <small style="color: var(--text-light);">${student.position}</small>
+          </div>
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <input type="text" 
+                   id="birthday-${key}" 
+                   placeholder="DD/MM" 
+                   value="${student.birthday || ''}"
+                   style="padding: 8px 12px; border-radius: 8px; border: 1px solid ${student.birthday ? 'var(--primary)' : 'var(--text-light)'}; width: 80px; text-align: center; font-weight: 600;">
+            <button onclick="updateStudentBirthday('${key}')" 
+                    style="padding: 8px 15px; background: var(--primary); color: white; border: none; border-radius: 8px; cursor: pointer;">
+              <i class="fa-solid fa-save"></i>
+            </button>
+          </div>
+        `;
+        
+        managerList.appendChild(div);
+      });
+    }
+    
+    function closeBirthdayManager() {
+      const modal = document.getElementById('birthdayManagerModal');
+      modal.classList.add('closing');
+      setTimeout(() => modal.classList.remove('open', 'closing'), 400);
+    }
+    
+    function updateStudentBirthday(studentKey) {
+      const input = document.getElementById(`birthday-${studentKey}`);
+      const birthday = input.value.trim();
+      const regex = /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])$/;
+      
+      if (birthday && !regex.test(birthday)) {
+        showNotification('Nhập theo định dạng DD/MM (ví dụ: 25/12)', 'error');
+        input.style.borderColor = 'var(--accent)';
+        input.style.animation = 'shake 0.5s';
+        setTimeout(() => input.style.animation = '', 500);
+        return;
+      }
+      
+      appData.studentData[studentKey].birthday = birthday || null;
+      initBirthdaySection();
+      initStudentList();
+      saveAllData();
+      showNotification('Đã cập nhật sinh nhật!', 'success');
+    }
+    
+    function checkDailyBirthdays() {
+      const today = new Date();
+      const currentMonth = today.getMonth() + 1;
+      const currentDate = today.getDate();
+      
+      let birthdayToday = [];
+      sortedStudentKeys.forEach(key => {
+        const student = appData.studentData[key];
+        if (student.birthday) {
+          const [day, month] = student.birthday.split('/').map(Number);
+          if (day === currentDate && month === currentMonth) {
+            birthdayToday.push(student.name);
+          }
+        }
+      });
+      
+      if (birthdayToday.length > 0 && !sessionStorage.getItem('birthdayNotified')) {
+        showNotification(`🎉 Hôm nay là sinh nhật của: ${birthdayToday.join(', ')}!`, 'success');
+        sessionStorage.setItem('birthdayNotified', 'true');
+        setTimeout(() => sessionStorage.removeItem('birthdayNotified'), 86400000);
+      }
+    }
+    
+    function checkNewYear() {
+      const today = new Date();
+      if (today.getMonth() === 11 && today.getDate() >= 20) {
+        for (let i = 0; i < 20; i++) {
+          setTimeout(() => {
+            const snowflake = document.createElement('div');
+            snowflake.innerHTML = '❄️';
+            snowflake.style.position = 'fixed';
+            snowflake.style.fontSize = `${Math.random() * 20 + 10}px`;
+            snowflake.style.zIndex = '9997';
+            snowflake.style.pointerEvents = 'none';
+            snowflake.style.animation = `snowfall ${Math.random() * 10 + 5}s linear infinite`;
+            snowflake.style.left = Math.random() * 100 + 'vw';
+            snowflake.style.top = '-20px';
+            snowflake.style.opacity = Math.random() * 0.5 + 0.3;
+            document.body.appendChild(snowflake);
+            
+            setTimeout(() => {
+              if (snowflake.parentNode) document.body.removeChild(snowflake);
+            }, 15000);
+          }, i * 300);
+        }
+      }
+    }
+
+    // ============================================
+    // 5. CÁC HÀM KHỞI TẠO CƠ BẢN
+    // ============================================
+    function loadSavedData() {
+      const savedData = localStorage.getItem('10A8_Data');
+      if (savedData) {
+        try {
+          const parsed = JSON.parse(savedData);
+          appData = {
+            editableTexts: { ...appData.editableTexts, ...parsed.editableTexts },
+            studentData: { ...appData.studentData, ...parsed.studentData },
+            scheduleData: parsed.scheduleData || appData.scheduleData,
+            stickyNotes: parsed.stickyNotes || appData.stickyNotes,
+            colors: parsed.colors || appData.colors
+          };
+        } catch(e) {
+          console.log("Không thể load dữ liệu đã lưu", e);
+        }
+      }
+    }
+    
+    function saveAllData() {
+      try {
+        localStorage.setItem('10A8_Data', JSON.stringify(appData));
+        const saveBtn = document.querySelector('button[onclick="saveAllData()"]');
+        if (saveBtn) {
+          const originalHTML = saveBtn.innerHTML;
+          saveBtn.innerHTML = '<i class="fa-solid fa-check"></i> Đã lưu!';
+          saveBtn.style.background = 'linear-gradient(135deg, #10b981, #3b82f6)';
+          setTimeout(() => {
+            saveBtn.innerHTML = originalHTML;
+            saveBtn.style.background = '';
+          }, 2000);
+        }
+        console.log('💾 Đã lưu dữ liệu');
+      } catch (e) {
+        console.error('Lỗi khi lưu dữ liệu:', e);
+        showNotification('Có lỗi khi lưu dữ liệu!', 'error');
+      }
+    }
+    
+    function initEditableTexts() {
+      document.querySelectorAll('.editable').forEach(el => {
+        const key = el.getAttribute('data-key');
+        if (appData.editableTexts[key]) {
+          el.textContent = appData.editableTexts[key];
+        }
+      });
+    }
+    
+    function initStudentList() {
+      const studentList = document.getElementById('studentList');
+      studentList.innerHTML = '';
+      
+      sortedStudentKeys.forEach(key => {
+        const student = appData.studentData[key];
+        const li = document.createElement('li');
+        li.textContent = student.name;
+        li.setAttribute('onclick', `openModal('${key}')`);
+        
+        if (student.birthday) {
+          const [day, month] = student.birthday.split('/').map(Number);
+          const today = new Date();
+          if (month === today.getMonth() + 1 && day === today.getDate()) {
+            const badge = document.createElement('span');
+            badge.className = 'birthday-badge';
+            badge.innerHTML = '🎂';
+            badge.title = 'Sinh nhật hôm nay!';
+            li.appendChild(badge);
+          }
+        }
+        
+        if (isAdminLoggedIn && isEditMode) {
+          const editBtn = document.createElement('button');
+          editBtn.className = 'edit-student';
+          editBtn.innerHTML = '<i class="fa-solid fa-pen"></i>';
+          editBtn.onclick = (e) => {
+            e.stopPropagation();
+            editStudent(key);
+          };
+          li.appendChild(editBtn);
+        }
+        
+        studentList.appendChild(li);
+      });
+    }
+    
+    function initSchedule() {
+      const scheduleBody = document.getElementById('scheduleBody');
+      scheduleBody.innerHTML = '';
+      
+      const today = new Date().getDay() + 1;
+      
+      appData.scheduleData.forEach((item, index) => {
+        const row = document.createElement('tr');
+        row.setAttribute('data-day', index + 2);
+        
+        if (today > 1 && (index + 2) == today) {
+          row.classList.add('active-day');
+        }
+        
+        row.innerHTML = `
+          <td><strong>${item.day}</strong></td>
+          <td class="editable-schedule" data-row="${index}" data-field="morning">${item.morning}</td>
+          <td class="editable-schedule" data-row="${index}" data-field="afternoon">${item.afternoon}</td>
+          <td class="editable-schedule" data-row="${index}" data-field="note">${item.note}</td>
+        `;
+        
+        scheduleBody.appendChild(row);
+      });
+    }
+    
+    function initStickyNotes() {
+      const stickyWall = document.getElementById('stickyWall');
+      stickyWall.innerHTML = '';
+      
+      const activeNotes = appData.stickyNotes.filter(note => note.status !== 'hidden');
+      
+      activeNotes.forEach(note => {
+        const date = new Date(note.timestamp);
+        const dateStr = date.toLocaleDateString('vi-VN', { day: '2-digit', month: '2-digit' });
+        
+        const noteElement = document.createElement('div');
+        noteElement.className = 'sticky-note';
+        noteElement.style.background = note.color;
+        noteElement.style.transform = `rotate(${note.rotation}deg)`;
+        noteElement.dataset.id = note.id;
+        
+        noteElement.innerHTML = `
+          <div style="flex-grow: 1;">${note.text}</div>
+          <small>- ${note.author} • ${dateStr}</small>
+          ${isAdminLoggedIn && isEditMode ? `<button class="delete-note" onclick="deleteNote(${note.id})"><i class="fa-solid fa-trash"></i></button>` : ''}
+        `;
+        
+        stickyWall.appendChild(noteElement);
+      });
+      
+      if (activeNotes.length === 0) {
+        stickyWall.innerHTML = `
+          <div style="text-align: center; padding: 60px; width: 100%; color: var(--text-light);">
+            <i class="fa-solid fa-sticky-note" style="font-size: 4rem; opacity: 0.2;"></i>
+            <h3 style="margin: 20px 0 10px 0;">Bức tường còn trống</h3>
+            <p>Hãy là người đầu tiên để lại lời nhắn!</p>
+          </div>
+        `;
+      }
+    }
+    
+    function initCountdown() {
+      const startDate = new Date('2025-09-05');
+      const now = new Date();
+      const diff = Math.floor((now - startDate) / (1000 * 60 * 60 * 24));
+      
+      const countdownElement = document.getElementById('countdown');
+      if (diff >= 0) {
+        countdownElement.innerHTML = `
+          <i class="fa-solid fa-calendar-day" style="margin-right: 8px;"></i>
+          Ngày thứ <span style="color: var(--primary); font-size: 1.3em;">${diff}</span> của hành trình
+        `;
+      } else {
+        countdownElement.innerHTML = `
+          <i class="fa-solid fa-hourglass-half" style="margin-right: 8px;"></i>
+          Còn <span style="color: var(--accent); font-size: 1.3em;">${Math.abs(diff)}</span> ngày nữa khai giảng!
+        `;
+      }
+    }
+    
+    function initScrollReveal() {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('show');
+          }
+        });
+      }, { threshold: 0.1 });
+      
+      document.querySelectorAll('.hidden').forEach((el) => observer.observe(el));
+    }
+    
+    function initCustomCursor() {
+      const cursorDot = document.querySelector('.cursor-dot');
+      const cursorOutline = document.querySelector('.cursor-outline');
+      if (!cursorDot || !cursorOutline) return;
+      
+      let mouseX = 0, mouseY = 0;
+      let outlineX = 0, outlineY = 0;
+      
+      const animateCursor = () => {
+        cursorDot.style.left = `${mouseX}px`;
+        cursorDot.style.top = `${mouseY}px`;
+        outlineX += (mouseX - outlineX) * 0.15;
+        outlineY += (mouseY - outlineY) * 0.15;
+        cursorOutline.style.left = `${outlineX}px`;
+        cursorOutline.style.top = `${outlineY}px`;
+        requestAnimationFrame(animateCursor);
+      };
+      
+      window.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+      });
+      
+      animateCursor();
+      
+      document.addEventListener('mousedown', () => {
+        cursorDot.style.transform = 'translate(-50%, -50%) scale(0.5)';
+        cursorOutline.style.transform = 'translate(-50%, -50%) scale(0.8)';
+      });
+      
+      document.addEventListener('mouseup', () => {
+        cursorDot.style.transform = 'translate(-50%, -50%) scale(1)';
+        cursorOutline.style.transform = 'translate(-50%, -50%) scale(1)';
+      });
+    }
+    
+    function initSmartSchedule() {
+      const today = new Date().getDay() + 1;
+      const rows = document.querySelectorAll('#scheduleBody tr');
+      rows.forEach(row => {
+        if (today > 1 && row.getAttribute('data-day') == today) {
+          row.classList.add('active-day');
+        }
+      });
+    }
+    
+    function initTiltEffects() {
+      VanillaTilt.init(document.querySelectorAll(".tilt-card"), {
+        max: 15,
+        speed: 400,
+        glare: true,
+        "max-glare": 0.2,
+        scale: 1.02
+      });
+    }
+    
+    function initAutoShowSections() {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, { threshold: 0.1 });
+      
+      document.querySelectorAll('section').forEach((section) => {
+        observer.observe(section);
+      });
+    }
+    
+    function initNavHighlight() {
+      const navLinks = document.querySelectorAll('.nav-links a');
+      const sections = document.querySelectorAll('section');
+      
+      window.addEventListener('scroll', () => {
+        let current = '';
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop;
+          if (scrollY >= (sectionTop - 200)) {
+            current = section.getAttribute('id');
+          }
+        });
+        
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === `#${current}`) {
+            link.classList.add('active');
+          }
+        });
+      });
+    }
+    
+    function initAnimations() {
+      setTimeout(() => {
+        document.querySelectorAll('.bento-card').forEach((card, index) => {
+          card.style.animationDelay = `${0.1 * index}s`;
+        });
+        document.querySelectorAll('.students li').forEach((li, index) => {
+          li.style.animationDelay = `${0.05 * index}s`;
+        });
+      }, 500);
+    }
+
+    // ============================================
+    // 6. HỆ THỐNG ADMIN
+    // ============================================
+    function toggleAdminToolbar() {
+      const toolbar = document.getElementById('adminToolbar');
+      const adminBtn = document.getElementById('adminBtn');
+      toolbar.classList.toggle('active');
+      adminBtn.classList.toggle('active');
+      adminBtn.style.transform = 'scale(1.1)';
+      setTimeout(() => adminBtn.style.transform = '', 300);
+    }
+    
+    function adminLogin() {
+      const password = document.getElementById('adminPassword').value;
+      
+      if (password === ADMIN_PASSWORD) {
+        isAdminLoggedIn = true;
+        document.getElementById('loginForm').style.display = 'none';
+        document.getElementById('adminControls').style.display = 'block';
+        document.getElementById('adminBtn').innerHTML = '<i class="fa-solid fa-unlock"></i>';
+        document.getElementById('adminBtn').classList.add('active');
+        sessionStorage.setItem('adminLoggedIn', 'true');
+        showNotification('Đăng nhập quản trị thành công!', 'success');
+        initStudentList();
+        initStickyNotes();
+      } else {
+        const passwordInput = document.getElementById('adminPassword');
+        passwordInput.style.borderColor = 'var(--accent)';
+        passwordInput.style.animation = 'shake 0.5s';
+        passwordInput.value = '';
+        setTimeout(() => passwordInput.style.animation = '', 500);
+        showNotification('Mật khẩu không đúng!', 'error');
+      }
+    }
+    
+    function adminLogout() {
+      isAdminLoggedIn = false;
+      isEditMode = false;
+      document.body.classList.remove('edit-mode');
+      document.getElementById('loginForm').style.display = 'block';
+      document.getElementById('adminControls').style.display = 'none';
+      document.getElementById('adminPassword').value = '';
+      document.getElementById('adminBtn').innerHTML = '<i class="fa-solid fa-lock"></i>';
+      document.getElementById('adminBtn').classList.remove('active');
+      sessionStorage.removeItem('adminLoggedIn');
+      initStudentList();
+      initStickyNotes();
+      showNotification('Đã đăng xuất!', 'info');
+    }
+    
+    function checkAdminSession() {
+      if (sessionStorage.getItem('adminLoggedIn') === 'true') {
+        isAdminLoggedIn = true;
+        document.getElementById('loginForm').style.display = 'none';
+        document.getElementById('adminControls').style.display = 'block';
+        document.getElementById('adminBtn').innerHTML = '<i class="fa-solid fa-unlock"></i>';
+        document.getElementById('adminBtn').classList.add('active');
+      }
+    }
+    
+    function toggleEditMode() {
+      isEditMode = !isEditMode;
+      document.body.classList.toggle('edit-mode');
+      const editBtn = document.querySelector('button[onclick="toggleEditMode()"]');
+      
+      if (isEditMode) {
+        editBtn.innerHTML = '<i class="fa-solid fa-toggle-on"></i> Tắt chỉnh sửa';
+        editBtn.style.background = 'linear-gradient(135deg, var(--primary), var(--accent))';
+        editBtn.style.color = 'white';
+        
+        document.querySelectorAll('.editable').forEach(el => {
+          el.setAttribute('contenteditable', 'true');
+          el.addEventListener('blur', function() {
+            const key = this.getAttribute('data-key');
+            appData.editableTexts[key] = this.textContent;
+          });
+        });
+        
+        document.querySelectorAll('.editable-schedule').forEach(el => {
+          el.setAttribute('contenteditable', 'true');
+          el.addEventListener('blur', function() {
+            const row = this.getAttribute('data-row');
+            const field = this.getAttribute('data-field');
+            appData.scheduleData[row][field] = this.textContent;
+          });
+        });
+        
+        showNotification('Chế độ chỉnh sửa đã bật!', 'success');
+      } else {
+        editBtn.innerHTML = '<i class="fa-solid fa-edit"></i> Chế độ chỉnh sửa';
+        editBtn.style.background = '';
+        editBtn.style.color = '';
+        document.querySelectorAll('.editable, .editable-schedule').forEach(el => {
+          el.setAttribute('contenteditable', 'false');
+        });
+        showNotification('Chế độ chỉnh sửa đã tắt!', 'info');
+      }
+      
+      initStudentList();
+      initStickyNotes();
+    }
+    
+    function openStudentManager() {
+      const modal = document.getElementById('studentManagerModal');
+      modal.classList.remove('closing');
+      modal.classList.add('open');
+      
+      const managerList = document.getElementById('studentManagerList');
+      managerList.innerHTML = '';
+      
+      sortedStudentKeys.forEach(key => {
+        const student = appData.studentData[key];
+        const div = document.createElement('div');
+        div.style.padding = '15px';
+        div.style.borderBottom = '1px solid rgba(0,0,0,0.1)';
+        div.style.display = 'flex';
+        div.style.justifyContent = 'space-between';
+        div.style.alignItems = 'center';
+        
+        div.innerHTML = `
+          <div>
+            <strong>${student.name}</strong> (@${student.nickname})<br>
+            <small>${student.position}</small>
+          </div>
+          <div>
+            <button onclick="editStudent('${key}')" style="padding: 5px 10px; margin-right: 5px; background: #6366f1; color: white; border: none; border-radius: 5px; cursor: pointer;">
+              <i class="fa-solid fa-pen"></i>
+            </button>
+            <button onclick="deleteStudent('${key}')" style="padding: 5px 10px; background: #f43f5e; color: white; border: none; border-radius: 5px; cursor: pointer;">
+              <i class="fa-solid fa-trash"></i>
+            </button>
+          </div>
+        `;
+        
+        managerList.appendChild(div);
+      });
+    }
+    
+    function closeStudentManager() {
+      const modal = document.getElementById('studentManagerModal');
+      modal.classList.add('closing');
+      setTimeout(() => modal.classList.remove('open', 'closing'), 400);
+    }
+    
+    function addNewStudent() {
+      const name = prompt("Nhập tên học sinh mới:");
+      if (!name) return;
+      
+      const nickname = prompt("Nhập biệt danh:") || name;
+      const key = name.replace(/\s+/g, '_');
+      
+      appData.studentData[key] = {
+        name: name,
+        nickname: nickname,
+        avatar: `https://i.pravatar.cc/150?u=${Date.now()}`,
+        position: 'Thành viên',
+        hobbies: 'Chưa cập nhật',
+        achievements: 'Chưa có',
+        quote: 'Hãy viết điều gì đó truyền cảm hứng!',
+        birthday: null
+      };
+      
+      initStudentList();
+      initBirthdaySection();
+      saveAllData();
+      showNotification(`Đã thêm ${name}!`, 'success');
+    }
+    
+    function editStudent(studentKey) {
+      const student = appData.studentData[studentKey];
+      
+      const newName = prompt("Tên mới:", student.name);
+      if (newName === null) return;
+      
+      const newNickname = prompt("Biệt danh mới:", student.nickname);
+      const newPosition = prompt("Chức vụ mới:", student.position);
+      const newHobbies = prompt("Sở thích mới:", student.hobbies);
+      const newAchievements = prompt("Thành tích mới:", student.achievements);
+      const newQuote = prompt("Câu nói hay mới:", student.quote);
+      const newBirthday = prompt("Ngày sinh mới (DD/MM):", student.birthday || '');
+      
+      appData.studentData[studentKey] = {
+        name: newName || student.name,
+        nickname: newNickname || student.nickname,
+        avatar: student.avatar,
+        position: newPosition || student.position,
+        hobbies: newHobbies || student.hobbies,
+        achievements: newAchievements || student.achievements,
+        quote: newQuote || student.quote,
+        birthday: newBirthday || student.birthday
+      };
+      
+      if (newName !== student.name) {
+        const newKey = newName.replace(/\s+/g, '_');
+        appData.studentData[newKey] = appData.studentData[studentKey];
+        delete appData.studentData[studentKey];
+      }
+      
+      initStudentList();
+      initBirthdaySection();
+      saveAllData();
+      showNotification("Đã cập nhật!", 'success');
+    }
+    
+    function deleteStudent(studentKey) {
+      if (confirm(`Xóa ${appData.studentData[studentKey].name}?`)) {
+        delete appData.studentData[studentKey];
+        initStudentList();
+        initBirthdaySection();
+        saveAllData();
+        showNotification("Đã xóa!", 'info');
+      }
+    }
+
+    // ============================================
+    // 7. QUẢN LÝ LƯU BÚT
+    // ============================================
+    function openNoteManager() {
+      const modal = document.getElementById('noteManagerModal');
+      modal.classList.remove('closing');
+      modal.classList.add('open');
+      updateNoteStats();
+      loadNoteManagerList();
+    }
+    
+    function closeNoteManager() {
+      const modal = document.getElementById('noteManagerModal');
+      modal.classList.add('closing');
+      setTimeout(() => modal.classList.remove('open', 'closing'), 400);
+    }
+    
+    function updateNoteStats() {
+      const total = appData.stickyNotes.length;
+      const today = new Date().toISOString().split('T')[0];
+      const todayCount = appData.stickyNotes.filter(note => 
+        note.timestamp && note.timestamp.startsWith(today)
+      ).length;
+      
+      const authorCount = {};
+      appData.stickyNotes.forEach(note => {
+        authorCount[note.author] = (authorCount[note.author] || 0) + 1;
+      });
+      let popularAuthor = '-';
+      let maxCount = 0;
+      Object.keys(authorCount).forEach(author => {
+        if (authorCount[author] > maxCount) {
+          maxCount = authorCount[author];
+          popularAuthor = author;
+        }
+      });
+      
+      document.getElementById('totalNotesCount').textContent = total;
+      document.getElementById('todayNotesCount').textContent = todayCount;
+      document.getElementById('popularAuthor').textContent = popularAuthor;
+    }
+    
+    function loadNoteManagerList(filter = 'all') {
+      const noteManagerList = document.getElementById('noteManagerList');
+      noteManagerList.innerHTML = '';
+      
+      let notesToShow = [...appData.stickyNotes];
+      
+      if (filter === 'today') {
+        const today = new Date().toISOString().split('T')[0];
+        notesToShow = notesToShow.filter(note => 
+          note.timestamp && note.timestamp.startsWith(today)
+        );
+      } else if (filter === 'week') {
+        const oneWeekAgo = new Date();
+        oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
+        notesToShow = notesToShow.filter(note => {
+          if (!note.timestamp) return false;
+          return new Date(note.timestamp) >= oneWeekAgo;
+        });
+      } else if (filter === 'recent') {
+        notesToShow.sort((a, b) => {
+          if (!a.timestamp || !b.timestamp) return 0;
+          return new Date(b.timestamp) - new Date(a.timestamp);
+        });
+        notesToShow = notesToShow.slice(0, 10);
+      }
+      
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.getAttribute('data-filter') === filter) {
+          btn.classList.add('active');
+        }
+      });
+      
+      if (notesToShow.length === 0) {
+        noteManagerList.innerHTML = `
+          <div style="text-align: center; padding: 40px; color: var(--text-light);">
+            <i class="fa-solid fa-sticky-note" style="font-size: 3rem; opacity: 0.3;"></i>
+            <p>Không có lưu bút nào</p>
+          </div>
+        `;
+        return;
+      }
+      
+      notesToShow.forEach(note => {
+        let dateText = 'Không xác định';
+        if (note.timestamp) {
+          const date = new Date(note.timestamp);
+          dateText = date.toLocaleDateString('vi-VN', {
+            day: '2-digit',
+            month: '2-digit',
+            year: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit'
+          });
+        }
+        
+        const noteElement = document.createElement('div');
+        noteElement.className = 'note-manager-item';
+        noteElement.innerHTML = `
+          <div class="note-header">
+            <div class="note-meta">
+              <div class="note-color-indicator" style="background: ${note.color}"></div>
+              <span class="note-author">${note.author}</span>
+              <span class="note-date">${dateText}</span>
+              <span style="font-size: 0.85rem; color: ${note.status === 'active' ? '#10b981' : '#f59e0b'};">
+                ${note.status === 'active' ? '✓ Hoạt động' : '⚠ Đã ẩn'}
+              </span>
+            </div>
+            <div>
+              <input type="checkbox" class="note-checkbox" data-id="${note.id}">
+            </div>
+          </div>
+          <div class="note-content">${note.text}</div>
+          <div class="note-actions">
+            <button class="edit-note-btn" onclick="editNote(${note.id})">
+              <i class="fa-solid fa-pen"></i> Chỉnh sửa
+            </button>
+            <button class="delete-note-btn" onclick="deleteNoteInManager(${note.id})">
+              <i class="fa-solid fa-trash"></i> Xóa
+            </button>
+          </div>
+        `;
+        
+        noteManagerList.appendChild(noteElement);
+      });
+    }
+    
+    function filterNotes(filterType) {
+      loadNoteManagerList(filterType);
+    }
+    
+    function editNote(noteId) {
+      const noteIndex = appData.stickyNotes.findIndex(note => note.id === noteId);
+      if (noteIndex === -1) return;
+      
+      const note = appData.stickyNotes[noteIndex];
+      const newText = prompt("Nội dung mới:", note.text.replace(/<br>/g, '\n'));
+      if (newText === null) return;
+      
+      const newAuthor = prompt("Tác giả mới:", note.author);
+      if (newAuthor === null) return;
+      
+      const color = prompt("Màu mới:", note.color);
+      if (color === null) return;
+      
+      appData.stickyNotes[noteIndex] = {
+        ...note,
+        text: newText.replace(/\n/g, '<br>'),
+        author: newAuthor,
+        color: color || note.color
+      };
+      
+      initStickyNotes();
+      loadNoteManagerList();
+      updateNoteStats();
+      saveAllData();
+      showNotification("Đã cập nhật!", 'success');
+    }
+    
+    function deleteNoteInManager(noteId) {
+      if (confirm("Xóa lưu bút này?")) {
+        appData.stickyNotes = appData.stickyNotes.filter(note => note.id !== noteId);
+        initStickyNotes();
+        loadNoteManagerList();
+        updateNoteStats();
+        saveAllData();
+        showNotification("Đã xóa!", 'info');
+      }
+    }
+
+    // ============================================
+    // 8. CÁC CHỨC NĂNG CHUNG
+    // ============================================
+    function scrollToSection(sectionId) {
+      const section = document.getElementById(sectionId);
+      if (section) {
+        section.scrollIntoView({ behavior: 'smooth' });
+        setActiveNav(document.querySelector(`a[href="#${sectionId}"]`));
+      }
+    }
+    
+    function setActiveNav(element) {
+      if (!element) return;
+      document.querySelectorAll('.nav-links a').forEach(link => {
+        link.classList.remove('active');
+      });
+      element.classList.add('active');
+    }
+    
+    function toggleTheme() {
+      const btn = document.querySelector('.theme-btn i');
+      document.body.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+      
+      setTimeout(() => {
+        document.body.classList.toggle('dark');
+        if (document.body.classList.contains('dark')) {
+          btn.classList.replace('fa-moon', 'fa-sun');
+        } else {
+          btn.classList.replace('fa-sun', 'fa-moon');
+        }
+        
+        setTimeout(() => {
+          document.body.style.transition = '';
+        }, 600);
+        
+        showNotification(`Đã chuyển sang ${document.body.classList.contains('dark') ? 'chế độ tối 🌙' : 'chế độ sáng ☀️'}`, 'info');
+      }, 300);
+    }
+    
+    function openNoteCreator() {
+      const modal = document.getElementById('noteCreatorModal');
+      modal.classList.remove('closing');
+      modal.classList.add('open');
+      VanillaTilt.init(document.querySelector("#noteCreatorModal .note-creator-content"));
+      setTimeout(() => document.getElementById('noteMessageInput').focus(), 500);
+    }
+    
+    function closeNoteCreator() {
+      const modal = document.getElementById('noteCreatorModal');
+      modal.classList.add('closing');
+      setTimeout(() => {
+        modal.classList.remove('open', 'closing');
+        document.getElementById('noteMessageInput').value = '';
+        document.getElementById('noteNameInput').value = '';
+      }, 400);
+    }
+    
+    function addNote() {
+      const messageInput = document.getElementById('noteMessageInput');
+      const nameInput = document.getElementById('noteNameInput');
+      
+      const text = messageInput.value.trim();
+      const name = nameInput.value.trim() || 'Ẩn danh';
+      
+      if (!text) {
+        showNotification('Hãy viết thông điệp trước!', 'error');
+        messageInput.style.border = '2px solid var(--accent)';
+        messageInput.style.animation = 'shake 0.5s';
+        setTimeout(() => {
+          messageInput.style.border = '';
+          messageInput.style.animation = '';
+        }, 500);
+        return;
+      }
+      
+      if (text.length > 150) {
+        showNotification('Tối đa 150 ký tự!', 'error');
+        return;
+      }
+      
+      const newNote = {
+        id: Date.now(),
+        text: text.replace(/\n/g, '<br>'),
+        author: name,
+        color: appData.colors[Math.floor(Math.random() * appData.colors.length)],
+        rotation: Math.floor(Math.random() * 10) - 5,
+        timestamp: new Date().toISOString(),
+        status: 'active'
+      };
+      
+      const submitBtn = document.querySelector('.submit-note-btn');
+      const originalText = submitBtn.innerHTML;
+      submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Đang dán...';
+      submitBtn.disabled = true;
+      
+      setTimeout(() => {
+        appData.stickyNotes.unshift(newNote);
+        initStickyNotes();
+        updateNoteStats();
+        saveAllData();
+        closeNoteCreator();
+        showNotification(`Đã dán lưu bút của ${name}!`, 'success');
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
+      }, 800);
+    }
+    
+    function deleteNote(noteId) {
+      if (confirm("Xóa lưu bút này?")) {
+        appData.stickyNotes = appData.stickyNotes.filter(note => note.id !== noteId);
+        initStickyNotes();
+        updateNoteStats();
+        saveAllData();
+        showNotification("Đã xóa!", 'info');
+      }
+    }
+    
+    function openModal(studentKey) {
+      const data = appData.studentData[studentKey];
+      if (!data) return;
+      
+      const modal = document.getElementById('studentModal');
+      document.getElementById('profileAvatar').src = data.avatar;
+      document.getElementById('profileName').textContent = data.name;
+      document.getElementById('profileNickname').textContent = `@${data.nickname}`;
+      document.getElementById('profilePosition').textContent = data.position;
+      document.getElementById('profileHobbies').textContent = data.hobbies;
+      document.getElementById('profileAchievements').textContent = data.achievements;
+      document.getElementById('profileQuote').textContent = `"${data.quote}"`;
+      
+      if (data.birthday) {
+        const birthdayInfo = document.createElement('div');
+        birthdayInfo.className = 'profile-stat';
+        birthdayInfo.innerHTML = `
+          <i class="fa-solid fa-cake-candles"></i>
+          <strong>Sinh nhật:</strong> <span>${data.birthday}</span>
+        `;
+        document.querySelector('.profile-body').appendChild(birthdayInfo);
+      }
+      
+      modal.classList.remove('closing');
+      modal.classList.add('open');
+      VanillaTilt.init(document.querySelector("#studentModal .modal-content"));
+    }
+    
+    function closeModal() {
+      const modal = document.getElementById('studentModal');
+      modal.classList.add('closing');
+      setTimeout(() => {
+        modal.classList.remove('open', 'closing');
+        const birthdayInfo = document.querySelector('.profile-body .profile-stat:last-child');
+        if (birthdayInfo && birthdayInfo.querySelector('.fa-cake-candles')) {
+          birthdayInfo.remove();
+        }
+      }, 400);
+    }
+    
+    function showNotification(message, type = 'info') {
+      const notification = document.createElement('div');
+      notification.className = `notification notification-${type}`;
+      
+      const colors = {
+        success: 'linear-gradient(135deg, #10b981, #059669)',
+        error: 'linear-gradient(135deg, #ef4444, #dc2626)',
+        info: 'linear-gradient(135deg, #3b82f6, #2563eb)',
+        warning: 'linear-gradient(135deg, #f59e0b, #d97706)'
+      };
+      
+      const icons = {
+        success: 'fa-check-circle',
+        error: 'fa-exclamation-circle',
+        info: 'fa-info-circle',
+        warning: 'fa-exclamation-triangle'
+      };
+      
+      notification.style.background = colors[type] || colors.info;
+      notification.innerHTML = `
+        <i class="fa-solid ${icons[type]}" style="font-size: 1.2rem;"></i>
+        <span>${message}</span>
+      `;
+      
+      document.body.appendChild(notification);
+      
+      setTimeout(() => notification.style.transform = 'translateX(0)', 10);
+      
+      setTimeout(() => {
+        notification.style.transform = 'translateX(150%)';
+        setTimeout(() => {
+          if (notification.parentNode) document.body.removeChild(notification);
+        }, 500);
+      }, 3000);
+      
+      notification.onclick = () => {
+        notification.style.transform = 'translateX(150%)';
+        setTimeout(() => {
+          if (notification.parentNode) document.body.removeChild(notification);
+        }, 500);
+      };
+    }
+
+    // ============================================
+    // 9. EVENT LISTENERS & HOTKEYS
+    // ============================================
+    document.getElementById('studentModal').addEventListener('click', function(e) {
+      if (e.target.id === 'studentModal') closeModal();
+    });
+    
+    document.getElementById('noteCreatorModal').addEventListener('click', function(e) {
+      if (e.target.id === 'noteCreatorModal') closeNoteCreator();
+    });
+    
+    document.getElementById('studentManagerModal').addEventListener('click', function(e) {
+      if (e.target.id === 'studentManagerModal') closeStudentManager();
+    });
+    
+    document.getElementById('noteManagerModal').addEventListener('click', function(e) {
+      if (e.target.id === 'noteManagerModal') closeNoteManager();
+    });
+    
+    document.getElementById('birthdayManagerModal').addEventListener('click', function(e) {
+      if (e.target.id === 'birthdayManagerModal') closeBirthdayManager();
+    });
+
+    document.addEventListener('keydown', function(e) {
+      if (e.ctrlKey && e.key === 's' && isAdminLoggedIn) {
+        e.preventDefault();
+        saveAllData();
+      }
+      
+      if (e.key === 'Escape') {
+        const modals = ['studentModal', 'noteCreatorModal', 'studentManagerModal', 'noteManagerModal', 'birthdayManagerModal'];
+        modals.forEach(modalId => {
+          const modal = document.getElementById(modalId);
+          if (modal && modal.classList.contains('open')) {
+            if (modalId === 'studentModal') closeModal();
+            if (modalId === 'noteCreatorModal') closeNoteCreator();
+            if (modalId === 'studentManagerModal') closeStudentManager();
+            if (modalId === 'noteManagerModal') closeNoteManager();
+            if (modalId === 'birthdayManagerModal') closeBirthdayManager();
+          }
+        });
+      }
+      
+      if (e.ctrlKey && e.key === 'b') {
+        e.preventDefault();
+        scrollToSection('birthday');
+      }
+      
+      if (e.ctrlKey && e.key === 'n') {
+        e.preventDefault();
+        openNoteCreator();
+      }
+    });
+
+    window.addEventListener('beforeunload', function(e) {
+      if (isAdminLoggedIn && isEditMode) {
+        saveAllData();
+        e.preventDefault();
+        e.returnValue = 'Bạn có thay đổi chưa lưu!';
+      }
+    });
+
+    console.log('🎉 Tất cả tính năng đã sẵn sàng!');
+  </script>
+</body>
+</html>
